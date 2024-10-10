@@ -1,0 +1,8 @@
+{
+  "action": "reject",
+  "args": {
+    "outputs": {
+      "reason": "This is not a valid git repository. Unable to proceed with analyzing staged changes and generating a commit message."
+    }
+  }
+}
