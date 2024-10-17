@@ -1,0 +1,6 @@
+[core]
+workspace_base="./workspace"
+
+[llm]
+embedding_model="local"
+ollama_base_url="http://localhost:11434"
