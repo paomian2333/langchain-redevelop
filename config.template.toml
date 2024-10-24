@@ -78,8 +78,6 @@ workspace_base = "./workspace"
 # use 'llm' for the default LLM config
 ##############################################################################
 [llm]
-embedding_model="local"
-ollama_base_url="http://localhost:11434"
 
 # AWS access key ID
 #aws_access_key_id = ""
