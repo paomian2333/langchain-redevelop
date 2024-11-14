@@ -7,7 +7,7 @@ BACKEND_PORT = 3000
 BACKEND_HOST_PORT = "$(BACKEND_HOST):$(BACKEND_PORT)"
 FRONTEND_PORT = 3001
 DEFAULT_WORKSPACE_DIR = "./workspace"
-DEFAULT_MODEL = "gpt-4o"
+DEFAULT_MODEL = "local"
 CONFIG_FILE = config.toml
 PRE_COMMIT_CONFIG_PATH = "./dev_config/python/.pre-commit-config.yaml"
 PYTHON_VERSION = 3.11
@@ -35,6 +35,7 @@ check-dependencies:
 	@$(MAKE) -s check-python
 	@$(MAKE) -s check-npm
 	@$(MAKE) -s check-nodejs
+	@$(MAKE) -s check-ollama
 ifeq ($(INSTALL_DOCKER),)
 	@$(MAKE) -s check-docker
 endif
@@ -89,6 +90,16 @@ check-nodejs:
 		fi; \
 	else \
 		echo "$(RED)Node.js is not installed. Please install Node.js to continue.$(RESET)"; \
+		exit 1; \
+	fi
+
+check-ollama:
+	@echo "$(YELLOW)Checking Ollama installation...$(RESET)"
+	@if command -v ollama > /dev/null; then \
+		echo "$(BLUE)$(shell ollama --version)$(RESET)"; \
+		echo "$(YELLOW)$(shell ollama pull qwen2.5:latest)$(RESET)"; \
+	else \
+		echo "$(RED)Ollama is not installed. Please install Ollama to continue.$(RESET)"; \
 		exit 1; \
 	fi
 
